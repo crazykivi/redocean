@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Добавление расширения .php, если файл существует
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Проверяем, что файл или директория физически не существуют
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Перенаправляем все несуществующие запросы на главную страницу
+RewriteRule ^(.*)$ /redocean/index [R=301,L]
